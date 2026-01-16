@@ -19,9 +19,7 @@ function crearDeck() {
     }  
 }
 
-function barajarDeck() {
-    deck = _.shuffle(deck);
-}
+const barajarDeck = () => deck = _.shuffle(deck);
 
 function pedirCarta() {
     if (deck.length === 0) {
@@ -31,9 +29,27 @@ function pedirCarta() {
     return deck.pop();
 }
 
+function obtenerValorCarta(carta) {
+    for (let i = 2; i < 10; i++) {
+        if (carta[0] == i) {
+            return i;
+        }
+    }
+    
+    if (carta[0] == 'A') {
+        return 11;
+    }
+    else if (carta[0] == 'J' || carta[0] == 'Q' || carta[0] == 'K') {
+        return 10;
+    }
+    else {
+        throw 'La carta no es valida';
+    }
+
+
+}
+
 crearDeck(); // Inicializar la baraja
 barajarDeck(); // revolver baraja
 
-console.log(deck);
-console.log(pedirCarta());
-console.log(deck);
+console.log(deck[0], obtenerValorCarta(deck[0]));
