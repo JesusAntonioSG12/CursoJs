@@ -19,6 +19,10 @@ function crearDeck() {
     }  
 }
 
+function barajarDeck() {
+    deck = _.shuffle(deck);
+}
+
 function pedirCarta() {
     if (deck.length === 0) {
         throw 'No hay cartas en el deck';
@@ -28,7 +32,7 @@ function pedirCarta() {
 }
 
 crearDeck(); // Inicializar la baraja
-deck = _.shuffle(deck); // revolver baraja
+barajarDeck(); // revolver baraja
 
 console.log(deck);
 console.log(pedirCarta());
