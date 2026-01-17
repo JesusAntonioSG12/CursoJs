@@ -1,6 +1,6 @@
 let = deck = [];
 
-function crearDeck() {
+const crearDeck = () => {
     const tipos = ['C', 'D', 'H', 'S'];
     const especiales = ['A', 'J', 'Q', 'K'];
 
@@ -21,7 +21,7 @@ function crearDeck() {
 
 const barajarDeck = () => deck = _.shuffle(deck);
 
-function pedirCarta() {
+const pedirCarta = () => {
     if (deck.length === 0) {
         throw 'No hay cartas en el deck';
     } 
@@ -29,7 +29,7 @@ function pedirCarta() {
     return deck.pop();
 }
 
-function obtenerValorCarta(carta) {
+const obtenerValorCarta = (carta) => {
     for (let i = 2; i < 10; i++) {
         if (carta[0] == i) {
             return i;
