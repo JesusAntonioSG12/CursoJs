@@ -15,21 +15,23 @@
 
     <body>
 
-        <header class="titulo">Blackjack Game</header>
+        <header class="titulo bg-dark text-white ">
+            <b>Blackjack Game</b>
+        </header>
 
         <div class="row mt-2">
             
             <div class="col text-center">
-                    <button id="btn-nuevo-juego" class="btn btn-danger">Nuevo Juego</button>
-                    <button id="btn-pedir-carta" class="btn btn-primary">Pedir Carta</button>
-                    <button id="btn-detener" class="btn btn-primary">Detener</button>
+                    <button id="btn-nuevo-juego" class="btn btn-danger"><b>Nuevo Juego</b></button>
+                    <button id="btn-pedir-carta" class="btn btn-primary"><b>Pedir Carta</b></button>
+                    <button id="btn-detener" class="btn btn-primary"><b>Detener</b></button>
             </div>
         
         </div>
 
         <div class="row container">
                 
-                <h1>Jugador <small id="contador-jugador">0</small></h1>
+                <h1 class="text-white">Jugador <small id="contador-jugador">0</small></h1>
                 
                 <div id="jugador-cartas"></div>
 
@@ -37,7 +39,7 @@
 
         <div class="row container">
                 
-            <h1>Computadora <small id="contador-computadora">0</small></h1>
+            <h1 class="text-white">Computadora <small id="contador-computadora">0</small></h1>
 
             <div id="computadora-cartas"></div>
 

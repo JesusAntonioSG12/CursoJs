@@ -1,5 +1,8 @@
 let deck = [];
 
+let puntosJugador = 0;
+let puntosComputadora = 0;
+
 const tipos = ['C', 'D', 'H', 'S'];
 const especiales = ['A', 'J', 'Q', 'K'];
 
@@ -13,9 +16,6 @@ const contadorComputadora = document.querySelector('#contador-computadora');
 const divCartasJugador = document.querySelector('#jugador-cartas');
 const divCartasComputadora = document.querySelector('#computadora-cartas');
 
-let puntosJugador = 0;
-let puntosComputadora = 0;
-
 const crearDeck = () => {
     for (const tipo of tipos){            
         for (let i = 2; i <= 10; i++) {               
@@ -25,6 +25,7 @@ const crearDeck = () => {
             deck.push(`${especial}${tipo}`)
         }
     }
+
 
 }
 
@@ -76,15 +77,16 @@ const turnoBase = (div) => {
     return obtenerValorCarta(carta);
 }
 
-const turnoJugador = () =>{
+const turnoJugador = () => {
     puntosJugador += turnoBase(divCartasJugador)
+    actualisarContadores();
 }
 
 const turnoComputadora = () => {
     do{
         puntosComputadora += turnoBase(divCartasComputadora)
-        actualisarContadores();
     }while(puntosComputadora <= puntosJugador && puntosComputadora <= 21)
+    actualisarContadores();
 }
 
 crearDeck(); // Inicializar la baraja
@@ -92,40 +94,42 @@ barajarDeck(); // revolver baraja
 
 // Eventos
 btnPedirCarta.addEventListener('click', () => {
-        turnoJugador()
-        actualisarContadores();
+    turnoJugador() 
 
-        if (puntosJugador >= 21){
+    // forsar una espera en lo que se carga la imagen de las cartas
+    setTimeout(() => {
+        if (puntosJugador > 21){
             btnPedirCarta.disabled = true
             btnDetener.disabled = true
             alert('perdiste');
         }
-    }
-);
+    }, 100);
+});
 
 btnDetener.addEventListener('click', () => {
-        btnPedirCarta.disabled = true
-        turnoComputadora()
-        btnDetener.disabled = true
+    btnPedirCarta.disabled = true
+    btnDetener.disabled = true
+    
+    turnoComputadora()
 
-        if (puntosComputadora > 21){
-            alert('ganaste');
-            return
-        }
-        if (puntosComputadora > puntosJugador){
-            alert('perdiste');
-            return
-        }
+    // forsar una espera en lo que se carga la imagen de las cartas
+    setTimeout(() => {
+        alert(puntosComputadora > 21 ? 'ganaste' : 'perdiste')
+    }, 100);
+});
 
+btnNuevoJuego.addEventListener('click', () => {
+    crearDeck();
+    barajarDeck();
 
-    }
-);
+    btnPedirCarta.disabled = false
+    btnDetener.disabled = false
+    
+    puntosJugador = 0;
+    puntosComputadora = 0;   
+    
+    actualisarContadores()
 
-btnNuevoJuego.addEventListener('click', () =>{
-        puntosJugador = 0;
-        puntosComputadora = 0;   
-        actualisarContadores()
-    }
-);
-
-console.log(deck);
+    divCartasJugador.innerHTML = '';
+    divCartasComputadora.innerHTML = '';
+});
