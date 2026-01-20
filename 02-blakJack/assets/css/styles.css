@@ -15,6 +15,7 @@ html, body {
     margin-left: -75px;
 }
 
-#computadora-cartas, #jugador-cartas {
+#cartas {
+    display: flex;
    height: 220px;
 }
