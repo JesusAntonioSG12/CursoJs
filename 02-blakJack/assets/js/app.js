@@ -141,7 +141,7 @@
                 this.agregarCarta(carta);
                 this.puntos += obtenerValorCarta(carta);
                 this.actualizarContador();
-            } while (this.puntos <= minimoPuntos && this.puntos <= 21);
+            } while (this.puntos <= minimoPuntos && this.puntos < 21);
             console.log(minimoPuntos);
         }
     }
