@@ -6,14 +6,14 @@
     
     // tipos de cartas
     const tipos = ['C', 'D', 'H', 'S'],
-     especiales = ['A', 'J', 'Q', 'K'];
+    especiales = ['A', 'J', 'Q', 'K'];
 
     // Referencias HTML
     const divJugadores = document.querySelector('#jugadores');
     
     const btnPedirCarta = document.querySelector('#btn-pedir-carta'),
-        btnDetener = document.querySelector('#btn-detener'),
-        btnNuevoJuego = document.querySelector('#btn-nuevo-juego');
+    btnDetener = document.querySelector('#btn-detener'),
+    btnNuevoJuego = document.querySelector('#btn-nuevo-juego');
 
         
     const crearDeck = () => {
@@ -31,6 +31,9 @@
     const barajarDeck = () => deck = _.shuffle(deck);
 
     const inicializarJuego = (jugadoresCantidad = 1) => {
+        deck = [];
+        jugadores = [];
+
         for (let i = 1; i <= jugadoresCantidad; i++) {
             jugadores.push(new Jugador(i));
         }
@@ -146,11 +149,11 @@
         }
     }
     
-    inicializarJuego();
+    inicializarJuego(2);
 
     // Eventos
     btnPedirCarta.addEventListener('click', () => {
-            for (jugador of jugadores) {
+        for (jugador of jugadores) {
 
                 jugador.turno(pedirCarta());
 
@@ -187,4 +190,5 @@
             inicializarJuego();
         }
     );
+    
 })();
